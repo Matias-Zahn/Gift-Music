@@ -5,6 +5,8 @@ const initialState= {
     name: "",
     email: "",
     token: "",
+    isLoading: false,
+    isRegister: false,
 }
 
 const userSlice = createSlice({
@@ -16,19 +18,35 @@ const userSlice = createSlice({
         const newState= {...state, ...data}
         localStorage.setItem('userInfo', JSON.stringify(newState))
         return newState
+    },
+    logOut: (state) => {
+      localStorage.removeItem('userInfo')
+      return{...state, ...initialState}
+    },
+    setIsLoading:(state, action) => {
+      state.isLoading = action.payload
+    },
+    setIsRegister:(state, action) => {
+      state.isRegister = action.payload
     }
   },
 });
 
 
 
-const {login} = userSlice.actions
+export const {login, logOut, setIsLoading, setIsRegister} = userSlice.actions
 
 export default userSlice.reducer;
 
 export const loginThunk = (data) => (dispatch) =>{
+  dispatch(setIsLoading(true))
     axiosMusic
       .post("/api/auth/login", data)
-      .then(({data}) => dispatch(login(data)))
-      .catch((err) => console.log(err));
+      .then(({data}) => {
+        dispatch(login(data))
+        dispatch(setIsRegister(true))
+      })
+      .catch(() => dispatch(setIsRegister(true)))
+      .finally(() => dispatch(setIsLoading(false)))
 }
+

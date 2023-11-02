@@ -1,5 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@100;300;400;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:wght@100;300;400;600;700;800;900&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.casett{
+  position: relative;
+}
+.casett > div {
+  transition: transform 1s;
+  backface-visibility: hidden;
+}
+
+.casett > .front {
+  transform: perspective(500px) rotateY(0deg);
+}
+
+.casett.front >.front {
+  transform: perspective(500px) rotateY(180deg);
+}
+ casett > .back {
+  transform: perspective(500px) rotateY(360deg);
+}
+
+.casett.back> .back{
+    transform: perspective(500px) rotateY(180deg);
+} 
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ffe24b;
+  border-radius: 5px;
+}
