@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import PrincipalLayout from "../Components/layout/PrincipalLayout";
+import Loader from "../Components/Loader";
 import { SearchIcon } from "../Components/Svgs";
+import PrincipalLayout from "../Components/layout/PrincipalLayout";
 import TracksList from "../Components/shares/TracksList";
 import { axiosMusic } from "../utils/configAxios";
-import Loader from "../Components/Loader";
 
 function Home() {
   const [tracksRecomendations, setTracksRecomendations] = useState([]);
@@ -38,7 +38,7 @@ function Home() {
     <PrincipalLayout>
       <form
         onSubmit={handleSubmit}
-        className="bg-white/10 outline-none  p-4 flex gap-2 rounded-md"
+        className="bg-white/10 outline-none mb-5  p-4 flex gap-2 rounded-md"
         action=""
       >
         <button>

@@ -41,7 +41,7 @@ function PrincipalLayout({ children, artistListBug }) {
         </div>
       </header>
       <section className=" p-4 mt-10">
-        <main className={`${artistListBug ? 'max-w-[320px]  sm:max-w-[562px]' : 'w-[min(528px,_100%)] '}  transition-all mx-auto bg-primary-dark py-8 px-10  rounded-3xl` }>
+        <main className={`${artistListBug ? 'max-w-[350px]  sm:max-w-[562px]' : 'w-[min(528px,_100%)] '}  transition-all mx-auto bg-primary-dark py-8 px-10  rounded-3xl` }>
           {children}
         </main>
       </section>

@@ -55,10 +55,10 @@ function TrackCard({
       </div>
       <div className="flex items-center gap-2 pr-2">
         {showPlayBtn && (
-          <button>
+          <Link to={showPlayBtn} target="_blank" >
             {" "}
             <PlayIcon />{" "}
-          </button>
+          </Link>
         )}
         {showAddBtn && (
           <button onClick={handleAddTrack}>

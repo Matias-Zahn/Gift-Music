@@ -5,25 +5,29 @@ import PublickLayout from "../Components/layout/PublickLayout";
 import SpotifySong from "../Components/shares/SpotifySong";
 import TrackCard from "../Components/shares/TrackCard";
 import { axiosMusic } from "../utils/configAxios";
+import PlayListCreateCount from "../Components/PlayLists/PlayListCreateCount";
 
 function PlayListPublic() {
   const [isShowFront, setIsShowFront] = useState(true);
 
   const [playlist, setPlaylist] = useState(null);
 
-  const [currentSong, setCurrentSong] = useState(null)
+  const [currentSong, setCurrentSong] = useState(null);
+
+  const [isShowModal, setIsShowModal] = useState(false);
 
   const { id } = useParams();
 
-  const playTrack= (idTrack) => {
-    setCurrentSong(idTrack)
-  }
+  const playTrack = (idTrack) => {
+    setCurrentSong(idTrack);
+  };
 
-
-  const sharePlaylist= () => {
-    const currentURL= window.location.href
-    navigator.clipboard.writeText(currentURL).then(alert('URL copiado en la papelera'))
-  }
+  const sharePlaylist = () => {
+    const currentURL = window.location.href;
+    navigator.clipboard
+      .writeText(currentURL)
+      .then(alert("URL copiado en la papelera"));
+  };
 
   useEffect(() => {
     axiosMusic
@@ -45,13 +49,16 @@ function PlayListPublic() {
             </div>
             <div>
               <button
-              onClick={sharePlaylist}
+                onClick={sharePlaylist}
                 type="button"
                 className="absolute bottom-4 right-14 border-2 rounded-full p-[3px]"
               >
                 <ShareIcon />
               </button>
-              <button className="absolute bottom-3 right-4  rounded-full p-[3px]">
+              <button
+                onClick={() => setIsShowModal(true)}
+                className="absolute bottom-3 right-4  rounded-full p-[3px]"
+              >
                 <AddIcon width="32" height="34" />
               </button>
             </div>
@@ -76,16 +83,19 @@ function PlayListPublic() {
           {isShowFront ? "Lado B" : "Lado A"}
         </button>
       </article>
-    
-    {
-      currentSong && <SpotifySong id={currentSong} />
-    }
+
+      {currentSong && <SpotifySong id={currentSong} />}
 
       <section className="mt-6">
         {playlist?.tracks.map((track) => (
           <TrackCard key={track.id} track={track} playBtn={playTrack} />
         ))}
       </section>
+
+      <PlayListCreateCount
+        setIsShowModal={setIsShowModal}
+        isShowModal={isShowModal}
+      />
     </PublickLayout>
   );
 }
