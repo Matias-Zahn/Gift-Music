@@ -29,10 +29,6 @@ function Login() {
     }
   }, [token]);
 
-
-
-
-
   return (
     <ContainerAuth >
       {isLoading ? (
