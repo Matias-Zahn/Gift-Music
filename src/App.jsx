@@ -20,7 +20,7 @@ function App() {
         <Route path="/playlist/public/:id" element={<PlayListPublic />} />
 
         {/* Rutas Privadas */}
-        <Route element={<PrivateRoutes />} >
+        <Route element={<PrivateRoutes />}>
           <Route path="/" element={<Home />} />
           <Route path="/playlists" element={<PlayList />} />
           <Route path="/playlists/:id" element={<PlaylistDetail />} />

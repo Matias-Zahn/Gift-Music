@@ -12,7 +12,6 @@ function Login() {
   const isLoading = useSelector((store) => store.user.isLoading);
   const isRegister = useSelector((store) => store.user.isRegister);
 
-
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -24,13 +23,15 @@ function Login() {
   };
 
   useEffect(() => {
-    if (token !== "") {
+    if (token) {
       navigate("/");
     }
-  }, [token]);
+  }, [token, navigate]);
+
+  console.log(token);
 
   return (
-    <ContainerAuth >
+    <ContainerAuth>
       {isLoading ? (
         <Loader absolute />
       ) : (
@@ -52,7 +53,11 @@ function Login() {
                 required
               />
             </label>
-            {isRegister && <span className="text-sm text-red-500">El correo es incorrecto o invalido </span>}
+            {isRegister && (
+              <span className="text-sm text-red-500">
+                El correo es incorrecto o invalido{" "}
+              </span>
+            )}
             <label>
               <span className="text-white/40 text-sm"> Contraseña </span>
               <input
@@ -62,7 +67,11 @@ function Login() {
                 required
               />
             </label>
-            {isRegister && <span className="text-sm text-red-500">La contraseña es incorrecta </span>}
+            {isRegister && (
+              <span className="text-sm text-red-500">
+                La contraseña es incorrecta{" "}
+              </span>
+            )}
             <button
               className="bg-primary-light py-1 mt-6 px-10 rounded-full max-w-max text-sm uppercase mx-auto font-semibold shadow-lg shadow-purple-400/40 hover:tracking-widest transition-all duration-300"
               type="submit"
